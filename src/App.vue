@@ -1,8 +1,11 @@
 <template>
   <div>
     <Beverage :isIced="currentTemp === 'Cold'" />
+
     <ul>
       <li>
+        <h3>Temperature</h3>
+
         <template v-for="temp in temps" :key="temp">
           <label>
             <input
@@ -16,13 +19,71 @@
           </label>
         </template>
       </li>
+
+      <li>
+        <h3>Base Beverage</h3>
+
+        <template v-for="base in bases" :key="base.id">
+          <label>
+            <input
+              type="radio"
+              name="base"
+              :value="base"
+              v-model="currentBase"
+            />
+            {{ base.name }}
+          </label>
+        </template>
+      </li>
+
+      <li>
+        <h3>Creamer</h3>
+
+        <template v-for="creamer in creamers" :key="creamer.id">
+          <label>
+            <input
+              type="radio"
+              name="creamer"
+              :value="creamer"
+              v-model="currentCreamer"
+            />
+            {{ creamer.name }}
+          </label>
+        </template>
+      </li>
+
+      <li>
+        <h3>Syrup</h3>
+
+        <template v-for="syrup in syrups" :key="syrup.id">
+          <label>
+            <input
+              type="radio"
+              name="syrup"
+              :value="syrup"
+              v-model="currentSyrup"
+            />
+            {{ syrup.name }}
+          </label>
+        </template>
+      </li>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
 import Beverage from "./components/Beverage.vue";
-import { temps, currentTemp } from "./stores/beverage";
+
+import {
+  temps,
+  bases,
+  creamers,
+  syrups,
+  currentTemp,
+  currentBase,
+  currentCreamer,
+  currentSyrup,
+} from "./stores/beverage";
 </script>
 
 <style lang="scss">
@@ -36,6 +97,7 @@ html {
   background-color: #6e4228;
   background: linear-gradient(to bottom, #6e4228 0%, #956f5a 100%);
 }
+
 ul {
   list-style: none;
 }
